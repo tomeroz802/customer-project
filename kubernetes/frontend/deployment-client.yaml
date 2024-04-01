@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: customer-deployment
+  labels:
+    app: customer-app
+spec:
+  selector:
+    matchLabels:
+      app: customer-app 
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: customer-app
+    spec:
+      containers:
+      - name: customer-app
+        image: tomeroz802/customer-app:frontend
+        ports:
+        - containerPort: 3000
+        imagePullPolicy: Always
