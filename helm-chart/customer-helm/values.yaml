@@ -1,0 +1,27 @@
+deploymentserver:
+  name: backend-deployment
+  app: server-dep
+  image: tomeroz802/customer-app:server
+  containerPort: 3001
+
+serviceserver:
+  name: service-server
+  app: server-dep
+  nodePort: 32001
+  targetPort: 3001  # This should match the containerPort of your backend deployment
+  port: 3001  # This should match the containerPort of your backend deployment
+  externalIP: 4.245.216.252  # Corrected to singular "externalIP"
+
+deploymentclient:
+  name: customer-deployment  
+  app: customer-app
+  image: tomeroz802/customer-app:frontend
+  containerPort: 3000
+  imagePullPolicy: Always
+
+serviceclient:
+  name: server-deployment
+  app: server
+  nodePort: 32000
+  targetPort: 3000  # This should match the containerPort of your frontend deployment
+  port: 3000  # This should match the containerPort of your frontend deployment
